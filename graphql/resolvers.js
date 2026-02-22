@@ -2,6 +2,7 @@ const User = require('../models/User');
 const Employee = require('../models/Employee');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const cloudinary = require('../config/cloudinary');
 
 module.exports = {
   Query: {
@@ -77,6 +78,22 @@ module.exports = {
       const employee = await Employee.findByIdAndDelete(eid);
       if (!employee) throw new Error('Employee not found');
       return `Employee ${eid} deleted successfully`;
+    },
+
+    // UPLOAD EMPLOYEE PHOTO
+    uploadEmployeePhoto: async (_, { eid, photo_url }) => {
+      const result = await cloudinary.uploader.upload(photo_url, {
+        folder: 'employees',
+        public_id: `employee_${eid}`,
+      });
+
+      const employee = await Employee.findByIdAndUpdate(
+        eid,
+        { employee_photo: result.secure_url },
+        { returnDocument: 'after' }
+      );
+      if (!employee) throw new Error('Employee not found');
+      return employee;
     },
   }
 };

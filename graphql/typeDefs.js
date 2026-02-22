@@ -62,5 +62,6 @@ module.exports = gql`
       employee_photo: String
     ): Employee
     deleteEmployee(eid: ID!): String
+    uploadEmployeePhoto(eid: ID!, photo_url: String!): Employee
   }
-`;  
+`;

@@ -275,6 +275,70 @@
         }
       },
       "response": []
+    },
+    {
+      "name": "ID",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"query\": \"mutation { addEmployee(first_name: \\\"Alex\\\", last_name: \\\"Johnson\\\", email: \\\"alex.johnson@company.com\\\", gender: \\\"Male\\\", designation: \\\"Designer\\\", salary: 70000, date_of_joining: \\\"2024-05-01\\\", department: \\\"Design\\\") { _id first_name last_name email designation department salary } }\"\r\n}"
+        },
+        "url": {
+          "raw": "http://localhost:4000/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "4000",
+          "path": [
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Upload Employee Photo",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"query\": \"mutation { uploadEmployeePhoto(eid: \\\"699a9619ebbb019ec4f5bcd9\\\", photo_url: \\\"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png\\\") { _id first_name last_name employee_photo } }\"\r\n}"
+        },
+        "url": {
+          "raw": "http://localhost:4000/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "4000",
+          "path": [
+            ""
+          ]
+        }
+      },
+      "response": []
     }
   ]
 }
